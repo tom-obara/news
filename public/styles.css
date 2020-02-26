@@ -1,0 +1,35 @@
+body {
+    font-family: 'Muli';
+}
+
+h1, h2, h3, h4, h5 {
+    font-family: 'Muni';
+
+}
+.jumbotron {
+    background-attachment: fixed;
+    background-color:rgb(194, 229, 250); 
+    size="550px";
+    background-size: cover;
+    font-family: 'Muni'
+}
+
+table 
+{ 
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th 
+{
+  border: 1px solid rgb(230, 228, 255);
+  text-align: left;
+  padding: 6px;
+}
+
+tr:nth-child(even) 
+{
+  background-color: rgb(194, 229, 250);
+}
+
+

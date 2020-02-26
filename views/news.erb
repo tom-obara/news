@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Swap out "Roboto" for the font(s) you want to use -->
+    <link href="https://fonts.googleapis.com/css?family=Muli&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css" crossorigin="anonymous">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    
+    <!-- Your own CSS -->
+    <link rel="stylesheet" href="styles.css">
+    
+    <title>Obara News & Weather Results</title>
+  </head>
+  
+  <body>
+    <br>
+    <div class="container">
+        <div class="jumbotron text-center">
+            <h1 class="display-4" style = "font-family: 'Muni'">OBARA NEWS & WEATHER</h1>
+            <p class="lead"> Anywhere, Anytime</p>
+        </div>
+    </div>
+    <div class="container">
+        <div class = "row">         
+            <div class = "col"> 
+            <h1> Search Another Location: <form action="/news"> <input type = "text" name="q"> <button type = "submit">Search</submit> </h1> </form>
+            </div>
+        </div>         
+    </div>
+    
+    <div class="container mt-5">
+        <div class = "row">
+            <div class = "col">
+            <div class="alert alert-secondary" role="alert">
+                <h1>Today's Weather:</h1>
+            </div>
+            <div class="alert alert-primary" role="alert">
+                  <p>Temperature: <%=@current_temperature%> </p>
+                  <p>Conditions: <%=@current_summary  %></p>  
+                </div>
+            </div>
+        </div>
+            <div class = "row">
+            <div class = "col">
+            <div class="alert alert-secondary" role="alert">
+            <h1>Next Week's Weather Forecast:</h1>
+            </div> 
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Days From Now</th>
+                            <th scope="col">Temperature (F)</th>
+                            <th scope="col">Conditions</th>
+                        </tr>
+                    </thead>
+                        <tbody>
+                            <% @forecast_temperature.zip(@forecast_summary).each do |forecasttemp, forecastcond| %>
+                                <tr>
+                                    <td><p><%=@forecast_temperature.index(forecasttemp)+1 %></p></td>
+                                    <td><p><%= forecasttemp %></p></td>
+                                    <td><p><%= forecastcond %></p></td>
+                                </tr>
+                            <% end %>
+                        </tbody>
+                </table>
+            </div>
+        <hr>
+        <hr>
+        <hr>
+        <hr>
+        <hr>
+       
+       <div class = "row">
+            <div class = "col">
+            <div class="alert alert-secondary" role="alert">
+                  <h1>In The News: </h1><br>
+            <% @headline.zip(@link).each do |headline, url| %>
+                <div class="card-fluid">
+                    <div class="card-body">
+                        <h5 class="card-title"> <a href="<%=url%>" class="btn btn-primary">Source</a> <%=headline%></h5>
+                    </div>
+                </div>  
+            <% end %>   
+    </div>  
+    <div class="container footer text-center">
+            <br> <br/>
+            <hr>
+            <p>Thanks for Visiting</p>
+        </div>
+  </body>
+</html>
